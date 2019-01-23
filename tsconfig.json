@@ -3,6 +3,7 @@
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
+    "moduleResolution": "node",
     "target": "es6",
     "lib": [
       "es2015",
@@ -13,11 +14,5 @@
     "allowSyntheticDefaultImports": false,
     "jsx": "react",
     "allowJs": true,
-    "baseUrl": "./",
-    "paths": {
-      "components/*": [
-        "src/components/*"
-      ],
-    }
   }
 }
