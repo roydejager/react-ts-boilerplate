@@ -1,7 +1,8 @@
-import App from './app'
-import * as ReactDOM from "react-dom";
-import * as React from "react";
+import React from 'react';
+import * as ReactDOM from 'react-dom';
 
-const wrapper = document.getElementById("app");
+import App from './app';
 
-ReactDOM.render(<App compiler="typescript" framework="react" />, wrapper);
+const wrapper = document.getElementById('app');
+
+ReactDOM.hydrate(<App compiler="typescript" framework="react" />, wrapper);

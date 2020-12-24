@@ -1,7 +1,7 @@
-import breakpoints from "./variables/breakpoints";
-import colors from "./variables/colors";
-import fonts from "./variables/fonts";
-import spacings from "./variables/spacings";
+import breakpoints from './variables/breakpoints';
+import colors from './variables/colors';
+import fonts from './variables/fonts';
+import spacings from './variables/spacings';
 
 export interface ThemeInterface {
   breakpoints: { [key in keyof typeof breakpoints]: string };
@@ -14,6 +14,5 @@ export const theme: ThemeInterface = {
   breakpoints,
   colors,
   fonts,
-  spacings
+  spacings,
 };
-

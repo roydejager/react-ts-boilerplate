@@ -1,19 +1,27 @@
-import * as React from 'react'
-import styled, { ThemeProvider } from '../styled-components'
-import { theme } from './styles'
+import * as React from 'react';
+
+import styled, { ThemeProvider } from './styled-components'
+import { theme } from './styles';
 
 const TitleContainer = styled.h1`
   font-size: 200px;
-  background-color: ${({ theme }) => theme.colors.colorPrimary};
-`
-export interface Props { compiler: string; framework: string; }
+  background-color: ${(props) => props.theme.colors.colorPrimary};
+`;
 
-function App(props: any) {
+export interface Props { compiler?: string; framework?: string; }
+
+const App = (props: Props) => {
+  const { compiler, framework } = props;
+
   return (
     <ThemeProvider theme={theme}>
-      <TitleContainer>Hello world {props.compiler} {props.framework} </TitleContainer>
+      <TitleContainer>
+        Hello world
+        {compiler}
+        {framework}
+      </TitleContainer>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
