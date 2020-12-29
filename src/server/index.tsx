@@ -1,42 +1,51 @@
-import * as express from 'express';
+import express from 'express';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheet } from 'styled-components';
-
-import App from '../app';
-import html from './html';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import Chalk from 'chalk';
+import path from 'path';
+import App from '../app/app';
+import Html from './html';
 
 const port = 3000;
 const server = express();
 const sheet = new ServerStyleSheet();
 
-if (process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack');
-  const config = require('../../webpack.server');
-  const compiler = webpack(config);
+const webpack = require('webpack');
+const config = require('../../webpack.server');
+const compiler = webpack(config);
 
-  server.use(require('webpack-dev-middleware')(compiler, {
-    publicPath: config.output.path,
-    stats: {
-      colors: true,
-      chunks: false,
-    },
-  }));
+server.use(require('webpack-dev-middleware')(compiler, {
+  publicPath: config.output.path,
+  serverSideRender: true,
+}));
 
-  server.use(require('webpack-hot-middleware')(compiler));
-}
+server.use(require('webpack-hot-middleware')(compiler));
 
-server.use(express.static('dist'));
+server.use('/public', express.static(path.join(__dirname, 'public')));
 
 server.get('/', (req, res) => {
+  res.send(renderHtml());
+});
+
+server.listen(port, () => console.info(
+  Chalk.black.bgGreen(`\n\nListening on port ${port}\n\n`)
+));
+
+const renderHtml = () => {
+  const manifest = require('../../dist/public/manifest.json');
+
   const body = renderToString(
-    sheet.collectStyles(<App />)
+    <StyleSheetManager sheet={sheet.instance}>
+      <App />
+    </StyleSheetManager>
   );
 
   const styles = sheet.getStyleTags();
 
-  res.send(html({ body, styles }));
+  const html = renderToString(
+    <Html body={body} styles={styles} manifest={manifest} />
+  )
 
-});
-
-server.listen(port, () => console.log(`Listening on port ${port}`));
+  return `<!DOCTYPE html> ${html}`;
+}

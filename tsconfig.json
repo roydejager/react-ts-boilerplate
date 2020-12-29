@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "build",
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es2015", "es2017", "dom"],
+    "lib": ["es5", "scripthost", "dom", "es2015"],
     "sourceMap": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "experimentalDecorators": true,
+    "noEmit": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "jsx": "react",
-    "strict": false,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "build"
   ]
 }

@@ -1,7 +1,7 @@
 import * as styledComponents from 'styled-components';
 import { ThemedStyledComponentsModule } from 'styled-components';
 
-import { ThemeInterface } from './styles';
+import { ThemeInterface } from './app/styles';
 
 const {
   default: styled,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styled, { ThemeProvider } from './styled-components'
+import styled, { ThemeProvider } from '../styled-components';
 import { theme } from './styles';
 
 const TitleContainer = styled.h1`
@@ -16,7 +16,7 @@ const App = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <TitleContainer>
-        Hello world
+        Hello worldss
         {compiler}
         {framework}
       </TitleContainer>
