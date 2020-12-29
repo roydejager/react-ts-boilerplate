@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import * as React from 'react';
 
 import styled, { ThemeProvider } from '../styled-components';
@@ -16,7 +17,7 @@ const App = (props: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <TitleContainer>
-        Hello worldss
+        Hello world
         {compiler}
         {framework}
       </TitleContainer>
@@ -24,4 +25,4 @@ const App = (props: Props) => {
   );
 };
 
-export default App;
+export default hot(App);

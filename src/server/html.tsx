@@ -1,19 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 
 export default function Html(props, children) {
-  const { body, styles, manifest } = props;
-
-  function getFileNames() {
-    const scriptFileNames = [];
-
-    Object.keys(manifest).forEach(key => {
-      scriptFileNames.push(manifest[key])
-    })
-    
-    return scriptFileNames
-  }
-
-  const scripts =  getFileNames().map((src, i) => <script src={src} key={i} />)
+  const { body, styles } = props;
+  
   return (
     <html lang="en">
     <head dangerouslySetInnerHTML={{__html: styles}}>
